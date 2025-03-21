@@ -1,0 +1,241 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>数据分析报告</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; }
+            h1 { color: #2c3e50; }
+            h2 { color: #34495e; margin-top: 30px; }
+            h3 { color: #7f8c8d; margin-top: 20px; }
+            pre { 
+                background-color: #f8f9fa; 
+                padding: 15px; 
+                border-radius: 5px; 
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                max-width: 100%;
+                overflow-x: auto;
+                font-size: 14px;
+                line-height: 1.5;
+            }
+            img { max-width: 100%; height: auto; margin: 20px 0; border: 1px solid #eee; border-radius: 5px; }
+            .timestamp { color: #7f8c8d; font-size: 0.9em; }
+            .distribution-section { margin-bottom: 40px; }
+            table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+            th, td { padding: 12px; text-align: left; border: 1px solid #ddd; }
+            th { background-color: #f5f5f5; }
+            .stats-table { margin-top: 20px; }
+            .stats-table th { background-color: #f5f5f5; font-weight: bold; }
+            .stats-table td { text-align: right; }
+            .anomaly-section { margin-top: 40px; }
+            .anomaly-plots { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        </style>
+    </head>
+    <body>
+        <h1>数据分析报告</h1>
+        <p class="timestamp">生成时间：2025-03-19 16:29:48</p>
+        
+        <h2>1. 数据基本信息</h2>
+        <div class="basic-info">
+            <pre>数据基本信息：
+数据维度: (203, 42)
+
+字段类型信息：
+                              0
+Unnamed: 0                int64
+日期               datetime64[ns]
+当日付款金额                  float64
+当日收款金额                  float64
+净资金流入                   float64
+存款余额                    float64
+贷款余额                    float64
+存放同业余额                  float64
+投资余额                    float64
+票据承兑余额                  float64
+承兑汇票保证金                 float64
+流动性资产                   float64
+流动性负债                   float64
+ 流动比率                   float64
+ 备付比率                   float64
+ 基金收益率                  float64
+ 贷款余额/存款余额              float64
+ 票据承兑余额/存放同业余额          float64
+ 承兑汇票保证金/存款余额           float64
+0-7天到期贷款                float64
+7天-1个月到期贷款              float64
+1-3个月到期贷款               float64
+3-6个月到期贷款               float64
+6-12个月到期贷款              float64
+1年以上到期贷款                float64
+0-7天到期存款                float64
+7天-1个月到期存款              float64
+1-3个月到期存款               float64
+3-6个月到期存款               float64
+6-12个月到期存款              float64
+1年以上到期存款                float64
+前1大客户存款余额               float64
+ 前1大客户存款占比              float64
+前2大客户存款余额               float64
+ 前2大客户存款占比              float64
+前3大客户存款余额               float64
+ 前3大客户存款占比              float64
+前4大客户存款余额               float64
+ 前4大客户存款占比              float64
+前5大客户存款余额               float64
+ 前5大客户存款占比              float64
+贷款余额/存款余额               float64
+
+缺失值信息：
+Empty DataFrame
+Columns: [缺失值数量, 缺失比例(%)]
+Index: []
+数值型变量统计特征：
+       Unnamed: 0        当日付款金额  ...   前5大客户存款占比    贷款余额/存款余额
+count  203.000000    203.000000  ...   203.000000  203.000000
+mean   102.000000  57152.163508  ...     0.099271    0.655453
+std     58.745213  23656.550433  ...     0.029394    0.061162
+min      1.000000  10135.361300  ...     0.050000    0.519306
+25%     51.500000  39781.265510  ...     0.070000    0.609808
+50%    102.000000  59639.053810  ...     0.100000    0.653705
+75%    152.500000  71306.603385  ...     0.125000    0.694542
+max    203.000000  99670.980920  ...     0.150000    0.811722
+
+[8 rows x 41 columns]
+
+净资金流入的异常值情况：
+异常值数量：1
+异常值占比：0.49%
+异常值范围：<-78508.00或>86757.32
+
+ 流动比率 的异常值情况：
+异常值数量：3
+异常值占比：1.48%
+异常值范围：<0.01或>1.47
+
+ 基金收益率 的异常值情况：
+异常值数量：8
+异常值占比：3.94%
+异常值范围：<0.01或>0.09
+
+ 贷款余额/存款余额 的异常值情况：
+异常值数量：2
+异常值占比：0.99%
+异常值范围：<0.49或>0.81
+
+0-7天到期贷款的异常值情况：
+异常值数量：4
+异常值占比：1.97%
+异常值范围：<4886.44或>29191.45
+
+7天-1个月到期存款的异常值情况：
+异常值数量：2
+异常值占比：0.99%
+异常值范围：<28095.48或>57915.83
+
+3-6个月到期存款的异常值情况：
+异常值数量：5
+异常值占比：2.46%
+异常值范围：<58032.58或>96939.70
+</pre>
+            
+            <h3>数值型变量统计特征</h3>
+            <table class="stats-table">
+                <tr>
+                    <th>统计量</th>
+                    <th>Unnamed: 0</th><th>当日付款金额</th><th>当日收款金额</th><th>净资金流入</th><th>存款余额</th><th>贷款余额</th><th>存放同业余额</th><th>投资余额</th><th>票据承兑余额</th><th>承兑汇票保证金</th><th>流动性资产</th><th>流动性负债</th><th> 流动比率 </th><th> 备付比率 </th><th> 基金收益率 </th><th> 贷款余额/存款余额 </th><th> 票据承兑余额/存放同业余额 </th><th> 承兑汇票保证金/存款余额 </th><th>0-7天到期贷款</th><th>7天-1个月到期贷款</th><th>1-3个月到期贷款</th><th>3-6个月到期贷款</th><th>6-12个月到期贷款</th><th>1年以上到期贷款</th><th>0-7天到期存款</th><th>7天-1个月到期存款</th><th>1-3个月到期存款</th><th>3-6个月到期存款</th><th>6-12个月到期存款</th><th>1年以上到期存款</th><th>前1大客户存款余额</th><th> 前1大客户存款占比 </th><th>前2大客户存款余额</th><th> 前2大客户存款占比 </th><th>前3大客户存款余额</th><th> 前3大客户存款占比 </th><th>前4大客户存款余额</th><th> 前4大客户存款占比 </th><th>前5大客户存款余额</th><th> 前5大客户存款占比 </th><th>贷款余额/存款余额</th>
+                </tr>
+                <tr>
+                    <td>样本数</td>
+                    <td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td><td>203</td>
+                </tr>
+                <tr>
+                    <td>均值</td>
+                    <td>102.0000</td><td>57152.1635</td><td>60219.5694</td><td>3067.4060</td><td>347590.1102</td><td>226456.9780</td><td>346226.0545</td><td>19046.0844</td><td>27768.0145</td><td>480.3403</td><td>2017790.1805</td><td>1475408.0444</td><td>0.7822</td><td>0.4776</td><td>0.0514</td><td>0.6552</td><td>0.0802</td><td>0.0015</td><td>17539.3390</td><td>28424.8648</td><td>38501.6431</td><td>50341.2839</td><td>51683.2131</td><td>51497.9509</td><td>25869.5445</td><td>43402.7753</td><td>61023.5603</td><td>78014.9011</td><td>77675.5055</td><td>78736.4148</td><td>35305.1028</td><td>0.1017</td><td>36786.1414</td><td>0.1064</td><td>34074.4173</td><td>0.0977</td><td>35599.3640</td><td>0.1022</td><td>34317.5685</td><td>0.0993</td><td>0.6555</td>
+                </tr>
+                <tr>
+                    <td>标准差</td>
+                    <td>58.7452</td><td>23656.5504</td><td>25658.8562</td><td>32788.5938</td><td>28092.3977</td><td>12576.1357</td><td>29343.5743</td><td>5643.9373</td><td>12529.6978</td><td>192.7357</td><td>499943.6029</td><td>269050.2707</td><td>0.2628</td><td>0.0606</td><td>0.0185</td><td>0.0611</td><td>0.0369</td><td>0.0005</td><td>4341.1435</td><td>3400.1029</td><td>3892.4812</td><td>4328.2969</td><td>4690.9950</td><td>4780.5090</td><td>5474.0362</td><td>6031.4049</td><td>7079.5163</td><td>8161.4334</td><td>8394.6526</td><td>8461.4682</td><td>9510.2788</td><td>0.0266</td><td>10497.7941</td><td>0.0305</td><td>10826.9929</td><td>0.0303</td><td>10866.1609</td><td>0.0303</td><td>10545.6759</td><td>0.0294</td><td>0.0612</td>
+                </tr>
+                <tr>
+                    <td>最小值</td>
+                    <td style="color: black">1.0000</td><td style="color: black">10135.3613</td><td style="color: black">10603.8160</td><td style="color: red">-80625.7072</td><td style="color: black">301130.8844</td><td style="color: red">200442.1945</td><td style="color: black">300117.0852</td><td style="color: black">10008.5683</td><td style="color: red">124.3130</td><td style="color: red">64.0700</td><td style="color: black">1209195.0000</td><td style="color: black">1007094.0000</td><td style="color: black">0.3700</td><td style="color: black">0.3600</td><td style="color: red">0.0100</td><td style="color: red">0.5200</td><td style="color: red">0.0032</td><td style="color: black">0.0010</td><td style="color: black">10516.6156</td><td style="color: red">20933.2599</td><td style="color: black">31019.6433</td><td style="color: red">40599.7337</td><td style="color: red">42074.9240</td><td style="color: red">40477.2973</td><td style="color: black">16150.9526</td><td style="color: black">31500.1363</td><td style="color: black">47367.5205</td><td style="color: red">60855.0136</td><td style="color: black">61344.4376</td><td style="color: red">61790.6913</td><td style="color: red">15627.9894</td><td style="color: black">0.0500</td><td style="color: black">17405.8865</td><td style="color: black">0.0500</td><td style="color: black">15032.8100</td><td style="color: black">0.0440</td><td style="color: black">15862.8317</td><td style="color: black">0.0500</td><td style="color: black">15750.8267</td><td style="color: black">0.0500</td><td style="color: red">0.5193</td>
+                </tr>
+                <tr>
+                    <td>25%分位数</td>
+                    <td style="color: black">51.5000</td><td style="color: black">39781.2655</td><td style="color: black">43720.1117</td><td style="color: black">-16533.5014</td><td style="color: black">324421.9816</td><td style="color: black">218326.4149</td><td style="color: black">318287.5949</td><td style="color: black">14643.1913</td><td style="color: black">16799.7627</td><td style="color: black">322.0000</td><td style="color: black">1578987.5000</td><td style="color: black">1238200.0000</td><td style="color: black">0.5600</td><td style="color: black">0.4200</td><td style="color: black">0.0400</td><td style="color: black">0.6100</td><td style="color: black">0.0500</td><td style="color: black">0.0010</td><td style="color: black">14000.8194</td><td style="color: black">25977.5250</td><td style="color: black">35485.1568</td><td style="color: black">47347.7376</td><td style="color: black">48153.1943</td><td style="color: black">47827.3890</td><td style="color: black">21511.0826</td><td style="color: black">39278.1110</td><td style="color: black">55892.1348</td><td style="color: black">72622.7542</td><td style="color: black">71409.2341</td><td style="color: black">72324.3121</td><td style="color: black">27647.4321</td><td style="color: black">0.0800</td><td style="color: black">28672.9697</td><td style="color: black">0.0800</td><td style="color: black">24651.4391</td><td style="color: black">0.0700</td><td style="color: black">26335.8951</td><td style="color: black">0.0800</td><td style="color: black">25208.8083</td><td style="color: black">0.0700</td><td style="color: black">0.6098</td>
+                </tr>
+                <tr>
+                    <td>中位数</td>
+                    <td style="color: black">102.0000</td><td style="color: black">59639.0538</td><td style="color: black">57682.6872</td><td style="color: black">-1961.7939</td><td style="color: black">348196.8488</td><td style="color: black">228669.8237</td><td style="color: black">343557.7228</td><td style="color: black">18547.4411</td><td style="color: black">27664.5426</td><td style="color: black">480.0000</td><td style="color: black">2052331.0000</td><td style="color: black">1462115.0000</td><td style="color: black">0.7500</td><td style="color: black">0.4700</td><td style="color: black">0.0500</td><td style="color: black">0.6500</td><td style="color: black">0.0800</td><td style="color: black">0.0010</td><td style="color: black">17571.2012</td><td style="color: black">28530.6047</td><td style="color: black">38177.0789</td><td style="color: black">49830.9501</td><td style="color: black">51601.4385</td><td style="color: black">51070.7531</td><td style="color: black">25098.4649</td><td style="color: black">43102.2400</td><td style="color: black">60922.8500</td><td style="color: black">76914.7500</td><td style="color: black">76213.7213</td><td style="color: black">79918.8512</td><td style="color: black">36149.5379</td><td style="color: black">0.1100</td><td style="color: black">37395.3006</td><td style="color: black">0.1100</td><td style="color: black">33231.3002</td><td style="color: black">0.1000</td><td style="color: black">35967.2520</td><td style="color: black">0.1100</td><td style="color: black">33463.1359</td><td style="color: black">0.1000</td><td style="color: black">0.6537</td>
+                </tr>
+                <tr>
+                    <td>75%分位数</td>
+                    <td style="color: black">152.5000</td><td style="color: black">71306.6034</td><td style="color: black">83581.0506</td><td style="color: black">24782.8287</td><td style="color: black">370403.1274</td><td style="color: black">235369.9224</td><td style="color: black">371002.1676</td><td style="color: black">23433.4481</td><td style="color: black">38129.5491</td><td style="color: black">650.0000</td><td style="color: black">2408241.5000</td><td style="color: black">1694203.2750</td><td style="color: black">0.9250</td><td style="color: black">0.5200</td><td style="color: black">0.0600</td><td style="color: black">0.6900</td><td style="color: black">0.1100</td><td style="color: black">0.0020</td><td style="color: black">20077.0724</td><td style="color: black">31070.6069</td><td style="color: black">40789.9487</td><td style="color: black">53697.7390</td><td style="color: black">55587.7444</td><td style="color: black">54789.1366</td><td style="color: black">30028.7601</td><td style="color: black">46733.1998</td><td style="color: black">65351.0325</td><td style="color: black">82349.5342</td><td style="color: black">83450.0032</td><td style="color: black">84404.2459</td><td style="color: black">42159.6880</td><td style="color: black">0.1200</td><td style="color: black">46063.6632</td><td style="color: black">0.1400</td><td style="color: black">43777.6834</td><td style="color: black">0.1250</td><td style="color: black">44327.5866</td><td style="color: black">0.1300</td><td style="color: black">43424.8202</td><td style="color: black">0.1250</td><td style="color: black">0.6945</td>
+                </tr>
+                <tr>
+                    <td>最大值</td>
+                    <td style="color: black">203.0000</td><td style="color: black">99670.9809</td><td style="color: black">99822.9076</td><td style="color: red">80962.2574</td><td style="color: black">399385.3315</td><td style="color: black">249604.2260</td><td style="color: black">398628.8663</td><td style="color: black">29992.2594</td><td style="color: black">49154.1802</td><td style="color: black">799.0000</td><td style="color: black">2971840.0000</td><td style="color: black">1987860.0000</td><td style="color: red">1.5400</td><td style="color: red">0.6000</td><td style="color: red">0.1100</td><td style="color: red">0.8100</td><td style="color: red">0.1600</td><td style="color: red">0.0030</td><td style="color: red">40005.0000</td><td style="color: red">36288.1359</td><td style="color: red">48463.4092</td><td style="color: red">61153.2284</td><td style="color: red">62279.1700</td><td style="color: red">62354.9200</td><td style="color: red">38185.5692</td><td style="color: red">58472.2567</td><td style="color: red">76175.1991</td><td style="color: red">99650.2879</td><td style="color: red">97554.3435</td><td style="color: red">96926.3105</td><td style="color: red">58709.0385</td><td style="color: black">0.1500</td><td style="color: red">58132.2992</td><td style="color: red">0.1700</td><td style="color: red">57838.2360</td><td style="color: black">0.1500</td><td style="color: black">57141.8710</td><td style="color: black">0.1500</td><td style="color: red">56391.2031</td><td style="color: black">0.1500</td><td style="color: red">0.8117</td>
+                </tr>
+            </table>
+        </div>
+        
+        <h2>2. 数据分布可视化</h2>
+        <div class="distribution-section">
+        <h3>Unnamed: 0的分布分析</h3><img src="analysis_images/Unnamed: 0_distribution.png" alt="Unnamed: 0的分布图"><h3>当日付款金额的分布分析</h3><img src="analysis_images/当日付款金额_distribution.png" alt="当日付款金额的分布图"><h3>当日收款金额的分布分析</h3><img src="analysis_images/当日收款金额_distribution.png" alt="当日收款金额的分布图"><h3>净资金流入的分布分析</h3><img src="analysis_images/净资金流入_distribution.png" alt="净资金流入的分布图"><h3>存款余额的分布分析</h3><img src="analysis_images/存款余额_distribution.png" alt="存款余额的分布图"><h3>贷款余额的分布分析</h3><img src="analysis_images/贷款余额_distribution.png" alt="贷款余额的分布图"><h3>存放同业余额的分布分析</h3><img src="analysis_images/存放同业余额_distribution.png" alt="存放同业余额的分布图"><h3>投资余额的分布分析</h3><img src="analysis_images/投资余额_distribution.png" alt="投资余额的分布图"><h3>票据承兑余额的分布分析</h3><img src="analysis_images/票据承兑余额_distribution.png" alt="票据承兑余额的分布图"><h3>承兑汇票保证金的分布分析</h3><img src="analysis_images/承兑汇票保证金_distribution.png" alt="承兑汇票保证金的分布图"><h3>流动性资产的分布分析</h3><img src="analysis_images/流动性资产_distribution.png" alt="流动性资产的分布图"><h3>流动性负债的分布分析</h3><img src="analysis_images/流动性负债_distribution.png" alt="流动性负债的分布图"><h3> 流动比率 的分布分析</h3><img src="analysis_images/ 流动比率 _distribution.png" alt=" 流动比率 的分布图"><h3> 备付比率 的分布分析</h3><img src="analysis_images/ 备付比率 _distribution.png" alt=" 备付比率 的分布图"><h3> 基金收益率 的分布分析</h3><img src="analysis_images/ 基金收益率 _distribution.png" alt=" 基金收益率 的分布图"><h3> 贷款余额/存款余额 的分布分析</h3><img src="analysis_images/ 贷款余额_存款余额 _distribution.png" alt=" 贷款余额/存款余额 的分布图"><h3> 票据承兑余额/存放同业余额 的分布分析</h3><img src="analysis_images/ 票据承兑余额_存放同业余额 _distribution.png" alt=" 票据承兑余额/存放同业余额 的分布图"><h3> 承兑汇票保证金/存款余额 的分布分析</h3><img src="analysis_images/ 承兑汇票保证金_存款余额 _distribution.png" alt=" 承兑汇票保证金/存款余额 的分布图"><h3>0-7天到期贷款的分布分析</h3><img src="analysis_images/0-7天到期贷款_distribution.png" alt="0-7天到期贷款的分布图"><h3>7天-1个月到期贷款的分布分析</h3><img src="analysis_images/7天-1个月到期贷款_distribution.png" alt="7天-1个月到期贷款的分布图"><h3>1-3个月到期贷款的分布分析</h3><img src="analysis_images/1-3个月到期贷款_distribution.png" alt="1-3个月到期贷款的分布图"><h3>3-6个月到期贷款的分布分析</h3><img src="analysis_images/3-6个月到期贷款_distribution.png" alt="3-6个月到期贷款的分布图"><h3>6-12个月到期贷款的分布分析</h3><img src="analysis_images/6-12个月到期贷款_distribution.png" alt="6-12个月到期贷款的分布图"><h3>1年以上到期贷款的分布分析</h3><img src="analysis_images/1年以上到期贷款_distribution.png" alt="1年以上到期贷款的分布图"><h3>0-7天到期存款的分布分析</h3><img src="analysis_images/0-7天到期存款_distribution.png" alt="0-7天到期存款的分布图"><h3>7天-1个月到期存款的分布分析</h3><img src="analysis_images/7天-1个月到期存款_distribution.png" alt="7天-1个月到期存款的分布图"><h3>1-3个月到期存款的分布分析</h3><img src="analysis_images/1-3个月到期存款_distribution.png" alt="1-3个月到期存款的分布图"><h3>3-6个月到期存款的分布分析</h3><img src="analysis_images/3-6个月到期存款_distribution.png" alt="3-6个月到期存款的分布图"><h3>6-12个月到期存款的分布分析</h3><img src="analysis_images/6-12个月到期存款_distribution.png" alt="6-12个月到期存款的分布图"><h3>1年以上到期存款的分布分析</h3><img src="analysis_images/1年以上到期存款_distribution.png" alt="1年以上到期存款的分布图"><h3>前1大客户存款余额的分布分析</h3><img src="analysis_images/前1大客户存款余额_distribution.png" alt="前1大客户存款余额的分布图"><h3> 前1大客户存款占比 的分布分析</h3><img src="analysis_images/ 前1大客户存款占比 _distribution.png" alt=" 前1大客户存款占比 的分布图"><h3>前2大客户存款余额的分布分析</h3><img src="analysis_images/前2大客户存款余额_distribution.png" alt="前2大客户存款余额的分布图"><h3> 前2大客户存款占比 的分布分析</h3><img src="analysis_images/ 前2大客户存款占比 _distribution.png" alt=" 前2大客户存款占比 的分布图"><h3>前3大客户存款余额的分布分析</h3><img src="analysis_images/前3大客户存款余额_distribution.png" alt="前3大客户存款余额的分布图"><h3> 前3大客户存款占比 的分布分析</h3><img src="analysis_images/ 前3大客户存款占比 _distribution.png" alt=" 前3大客户存款占比 的分布图"><h3>前4大客户存款余额的分布分析</h3><img src="analysis_images/前4大客户存款余额_distribution.png" alt="前4大客户存款余额的分布图"><h3> 前4大客户存款占比 的分布分析</h3><img src="analysis_images/ 前4大客户存款占比 _distribution.png" alt=" 前4大客户存款占比 的分布图"><h3>前5大客户存款余额的分布分析</h3><img src="analysis_images/前5大客户存款余额_distribution.png" alt="前5大客户存款余额的分布图"><h3> 前5大客户存款占比 的分布分析</h3><img src="analysis_images/ 前5大客户存款占比 _distribution.png" alt=" 前5大客户存款占比 的分布图"><h3>贷款余额/存款余额的分布分析</h3><img src="analysis_images/贷款余额_存款余额_distribution.png" alt="贷款余额/存款余额的分布图">
+        </div>
+        
+        <h2>3. 相关性分析</h2>
+        <img src="analysis_images/correlation_heatmap.png" alt="相关性热力图">
+        
+        <div class="anomaly-section">
+            <h2>4. 异常数据检测结果</h2>
+        <table border="1" style="border-collapse: collapse; width: 100%; margin: 20px 0;">
+            <tr style="background-color: #f2f2f2;">
+                <th style="padding: 12px;">特征</th>
+                <th style="padding: 12px;">异常值数量</th>
+                <th style="padding: 12px;">异常值比例</th>
+                <th style="padding: 12px;">异常值范围</th>
+            </tr>
+        
+            <tr>
+                <td style="padding: 8px;"> 基金收益率 </td>
+                <td style="padding: 8px;">1</td>
+                <td style="padding: 8px;">0.49%</td>
+                <td style="padding: 8px;">[0.11, 0.11]</td>
+            </tr>
+            
+            <tr>
+                <td style="padding: 8px;"> 承兑汇票保证金/存款余额 </td>
+                <td style="padding: 8px;">1</td>
+                <td style="padding: 8px;">0.49%</td>
+                <td style="padding: 8px;">[0.00, 0.00]</td>
+            </tr>
+            
+            <tr>
+                <td style="padding: 8px;">0-7天到期贷款</td>
+                <td style="padding: 8px;">3</td>
+                <td style="padding: 8px;">1.48%</td>
+                <td style="padding: 8px;">[31562.00, 40005.00]</td>
+            </tr>
+            </table><div class="anomaly-plots">
+            <div style="margin: 20px 0;">
+                <h3> 基金收益率 的异常值分析</h3>
+                <img src="analysis_images/ 基金收益率 _anomalies.png" alt=" 基金收益率 的异常值分析图" style="max-width: 100%; height: auto;">
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <h3> 承兑汇票保证金/存款余额 的异常值分析</h3>
+                <img src="analysis_images/ 承兑汇票保证金_存款余额 _anomalies.png" alt=" 承兑汇票保证金/存款余额 的异常值分析图" style="max-width: 100%; height: auto;">
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <h3>0-7天到期贷款的异常值分析</h3>
+                <img src="analysis_images/0-7天到期贷款_anomalies.png" alt="0-7天到期贷款的异常值分析图" style="max-width: 100%; height: auto;">
+            </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    
