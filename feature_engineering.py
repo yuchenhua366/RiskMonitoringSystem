@@ -3,7 +3,6 @@ import numpy as np
 from datetime import datetime, timedelta
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor, HistGradientBoostingRegressor
-import xgboost as xgb
 from sklearn.model_selection import cross_val_score
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.inspection import permutation_importance
